@@ -19,16 +19,19 @@ type Ring struct {
 // includes the hashed value of key.
 func (r *Ring) search(key string) int {
 	keyHash := hashId(key)
-	responsible := r.Nodes[0]
-	index := 0
 
+	// Percorre os nós procurando o primeiro nó com hash maior
+	//   que o da chave. Se não encontra, atribui ao primeiro.
+
+	//log.Printf(fmt.Sprint(keyHash))
 	for i, node := range r.Nodes {
-		if node.HashId < keyHash && node.HashId > responsible.HashId {
-			responsible = node
-			index = i
+		if node.HashId > keyHash {
+			//log.Printf(strconv.Itoa(i))
+			return i
 		}
 	}
-	return index
+	//log.Printf(strconv.Itoa(0))
+	return 0
 }
 
 // NewRing will create a new Ring object and return a pointer to it.
