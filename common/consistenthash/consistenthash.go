@@ -23,14 +23,11 @@ func (r *Ring) search(key string) int {
 	// Percorre os nós procurando o primeiro nó com hash maior
 	//   que o da chave. Se não encontra, atribui ao primeiro.
 
-	//log.Printf(fmt.Sprint(keyHash))
 	for i, node := range r.Nodes {
 		if node.HashId > keyHash {
-			//log.Printf(strconv.Itoa(i))
 			return i
 		}
 	}
-	//log.Printf(strconv.Itoa(0))
 	return 0
 }
 
